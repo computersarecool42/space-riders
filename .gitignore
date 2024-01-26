@@ -1,0 +1,6 @@
+# created by virtualenv automatically
+resources/
+.idea/
+venv/
+*.iml
+.DS_Store
