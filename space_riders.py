@@ -1,6 +1,7 @@
 import pygame
 import sys
 from ship import Ship
+from bullet import Bullet
 from settings import Settings
 
 
@@ -29,6 +30,7 @@ class SpaceRiders:
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+        self.ship.bullet.blitme()
 
         # Make visible the most recent drawn screen
         pygame.display.flip()
@@ -52,6 +54,9 @@ class SpaceRiders:
             self.ship.moving_up = True
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = True
+        elif event.key == pygame.K_SPACE:
+            print("True!")
+            self.ship.bullet.fire = True
         elif event.key == pygame.K_q:
             sys.exit()
 
@@ -64,6 +69,8 @@ class SpaceRiders:
             self.ship.moving_up = False
         elif event.key == pygame.K_DOWN:
             self.ship.moving_down = False
+        elif event.key == pygame.K_SPACE:
+            self.ship.bullet.fire = False
 
     def run_game(self):
         """Start the main loop."""
@@ -71,6 +78,7 @@ class SpaceRiders:
             # Listen keyboard and mouse events
             self._check_events()
             self.ship.update()
+            self.ship.bullet.update()
             self._update_screen()
 
 

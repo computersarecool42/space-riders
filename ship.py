@@ -1,4 +1,5 @@
 import pygame
+from bullet import Bullet
 
 
 class Ship:
@@ -20,12 +21,13 @@ class Ship:
         self.x = float(self.ship_rect.x)
         self.y = float(self.ship_rect.y)
 
-
         # Movement flag
         self.moving_right = False
         self.moving_left = False
         self.moving_up = False
         self.moving_down = False
+
+        self.bullet = Bullet(self)
 
     def update(self):
         """Update the ship's position based on the movement flag."""
